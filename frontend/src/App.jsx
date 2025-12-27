@@ -1,10 +1,13 @@
-import { useState } from 'react'
-import './App.css'
+import './App.css';
+import { Outlet } from 'react-router-dom';
+import { CubeBackground, Header } from './components';
 
 function App() {
   return (
     <>
-      <h1>Hello IOTians!</h1>
+      <Header />
+      <CubeBackground />
+      <Outlet />
     </>
   )
 }
