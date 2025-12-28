@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { vs, fs } from "./CubeData";
 
-const BACKGROUND = "#101010";
 const FOREGROUND = "#c05621";
 const FPS = 90;
 
@@ -19,7 +18,7 @@ export default function CubeBackground() {
     let animationId;
 
     const clear = () => {
-      ctx.fillStyle = BACKGROUND;
+      ctx.fillStyle = "rgba(0, 0, 0, 0.15)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
 
@@ -77,7 +76,7 @@ export default function CubeBackground() {
       style={{
         position: "fixed",
         inset: 0,
-        zIndex: -1,
+        zIndex: -2,
       }}
     />
   );
