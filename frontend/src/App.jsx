@@ -5,9 +5,9 @@ import { CubeBackground, Header, MeshBG } from './components';
 function App() {
   return (
     <>
-      <MeshBG />
+      {/* <MeshBG /> */}
       <Header />
-      <CubeBackground />
+      {/* <CubeBackground /> */}
       <Outlet />
     </>
   )
