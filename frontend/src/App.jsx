@@ -1,6 +1,7 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
-import { CubeBackground, Header, MeshBG } from './components';
+import { Header } from './components';
+import ClickSpark from './components/effects/ClickSpark.jsx';
 
 function App() {
   return (
@@ -8,8 +9,10 @@ function App() {
       {/* <MeshBG /> */}
       <Header />
       {/* <CubeBackground /> */}
-      <Outlet />
+
+        <Outlet />
     </>
+
   )
 }
 
