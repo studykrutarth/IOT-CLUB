@@ -37,11 +37,15 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const signUp = async (email, password, userData = {}) => {
+    // Get the current origin (works for both dev and production)
+    const redirectTo = `${window.location.origin}/auth/callback`;
+    
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
         data: userData,
+        emailRedirectTo: redirectTo,
       },
     });
 

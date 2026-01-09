@@ -117,8 +117,37 @@ CREATE POLICY "Users can update their own registrations"
   ON registrations FOR UPDATE
   USING (auth.uid() = user_id);
 
+-- Contact Messages table (optional - for contact form)
+CREATE TABLE IF NOT EXISTS contact_messages (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  subject TEXT,
+  message TEXT NOT NULL,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  read BOOLEAN DEFAULT FALSE
+);
+
+-- Add updated_at trigger for contact_messages
+CREATE TRIGGER update_contact_messages_updated_at BEFORE UPDATE ON contact_messages
+  FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
+
+-- Enable RLS for contact_messages
+ALTER TABLE contact_messages ENABLE ROW LEVEL SECURITY;
+
+-- Anyone can insert contact messages
+CREATE POLICY "Anyone can create contact messages"
+  ON contact_messages FOR INSERT
+  WITH CHECK (true);
+
+-- Only authenticated users can view contact messages (admin functionality - can be restricted further)
+CREATE POLICY "Authenticated users can view contact messages"
+  ON contact_messages FOR SELECT
+  USING (auth.role() = 'authenticated');
+
 -- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_registrations_user_id ON registrations(user_id);
 CREATE INDEX IF NOT EXISTS idx_registrations_event_id ON registrations(event_id);
 CREATE INDEX IF NOT EXISTS idx_events_date ON events(date);
 CREATE INDEX IF NOT EXISTS idx_events_status ON events(status);
+CREATE INDEX IF NOT EXISTS idx_contact_messages_created_at ON contact_messages(created_at);

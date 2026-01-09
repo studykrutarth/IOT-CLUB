@@ -48,6 +48,7 @@ function Home() {
     const [submitStatus, setSubmitStatus] = useState(null);
     const [errors, setErrors] = useState({});
     const [userProfile, setUserProfile] = useState(null);
+    const [showVideoModal, setShowVideoModal] = useState(false);
 
     // Load events from Supabase
     useEffect(() => {
@@ -320,7 +321,18 @@ function Home() {
             />
 
             {/* HERO SECTION */}
-            <section className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden">
+            <section id="hero" className="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden">
+                {/* Background Image */}
+                <div 
+                    className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                        backgroundImage: 'url(/hero.jpg)'
+                    }}
+                >
+                    {/* Dark overlay for text readability */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70"></div>
+                </div>
+
                 {/* Animated background elements */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <div className="absolute top-20 left-10 w-72 h-72 bg-orange-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -328,58 +340,405 @@ function Home() {
                 </div>
 
                 <div className="relative z-10 max-w-4xl mx-auto">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8 animate-fade-in">
-                        <svg className="w-5 h-5 text-orange-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
-                        </svg>
-                        <span className="text-sm text-gray-300">Welcome to IOT Club</span>
-                    </div>
-
                     <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 text-white">
-                        Learn. Build. Compete.
+                        Welcome to the SCET IoT Club
                     </h1>
 
-                    <p className="max-w-2xl mx-auto text-gray-300 text-lg sm:text-xl mb-12 leading-relaxed">
-                        Join workshops, bootcamps, and competitions designed to help you grow
-                        as a developer and build your future.
-                    </p>
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-12 text-gray-300">
+                        For the Students, by the Students
+                    </h2>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <button
                             onClick={() =>
                                 document
-                                    .getElementById("events")
+                                    .getElementById("about")
                                     .scrollIntoView({ behavior: "smooth" })
                             }
                             className="group px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 rounded-xl font-semibold hover:from-orange-700 hover:to-orange-800 transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center gap-2 text-lg"
                         >
-                            <span>Explore Events</span>
+                            <span>Get Started</span>
                             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                             </svg>
                         </button>
-                        
-                        <button
-                            className="px-8 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-xl font-semibold hover:bg-white/20 transition-all text-lg"
-                        >
-                            Learn More
-                        </button>
                     </div>
+                </div>
+            </section>
 
-                    {/* Stats */}
-                    <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-3xl mx-auto">
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-orange-400 mb-2">50+</div>
-                            <div className="text-gray-400 text-sm">Events Hosted</div>
+            {/* VISION SECTION */}
+            <section id="why-us" className="py-24 px-6 bg-gradient-to-b from-[#1b1833] to-[#0f0c1d] text-white">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid lg:grid-cols-3 gap-12">
+                        <div className="lg:col-span-1">
+                            <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 h-full">
+                                <h3 className="text-3xl font-bold mb-6 text-orange-400">Vision of SCET IoT Club</h3>
+                                <p className="text-gray-300 leading-relaxed mb-6">
+                                    IOT Club under Computer Engineering Department at SCET provides you the platform for the students to adopt new skills as well as below mentioned the following visions:
+                                </p>
+                                <ul className="space-y-3 text-gray-300">
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-500 mt-1">•</span>
+                                        <span>To enhance the leadership skills</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-500 mt-1">•</span>
+                                        <span>To explorer interdisciplinary knowledge</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-500 mt-1">•</span>
+                                        <span>To give the exposure of new technology</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-500 mt-1">•</span>
+                                        <span>To showcase the technical skills and share the knowledge among peers</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-500 mt-1">•</span>
+                                        <span>To build stronger community which can learn in team resulting in enhanced coding skills with hardware</span>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-orange-400 mb-2">500+</div>
-                            <div className="text-gray-400 text-sm">Active Members</div>
+                        <div className="lg:col-span-2">
+                            <div className="grid md:grid-cols-3 gap-6">
+                                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mb-4">
+                                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                    </div>
+                                    <h4 className="text-xl font-bold mb-3">Student's Response</h4>
+                                    <p className="text-gray-300 text-sm leading-relaxed">
+                                        Having a great response among students & great enthusiasm among students to develop & learn new things by exploring the technology.
+                                    </p>
+                                </div>
+                                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-4">
+                                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                        </svg>
+                                    </div>
+                                    <h4 className="text-xl font-bold mb-3">Infrastructure</h4>
+                                    <p className="text-gray-300 text-sm leading-relaxed">
+                                        Excellent hardware equipments with best laboratory under the department of Computer Engineering Department.
+                                    </p>
+                                </div>
+                                <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 hover:bg-white/10 transition-all">
+                                    <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-4">
+                                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                    </div>
+                                    <h4 className="text-xl font-bold mb-3">Gallery</h4>
+                                    <p className="text-gray-300 text-sm leading-relaxed">
+                                        Some Glimpse of IoT Club Hands-on-Workshop & projects done by students.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-orange-400 mb-2">100+</div>
-                            <div className="text-gray-400 text-sm">Workshops</div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ABOUT SECTION */}
+            <section id="about" className="py-24 px-6 bg-gradient-to-b from-[#f7f7fb] to-white text-gray-900">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+                        <div className="relative">
+                            <div 
+                                className="aspect-video bg-gray-800 rounded-2xl overflow-hidden flex items-center justify-center cursor-pointer group"
+                                onClick={() => setShowVideoModal(true)}
+                            >
+                                <div className="text-center">
+                                    <div className="w-20 h-20 bg-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 hover:bg-orange-700 transition group-hover:scale-110">
+                                        <svg className="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z"/>
+                                        </svg>
+                                    </div>
+                                    <p className="text-gray-400">Watch Introduction Video</p>
+                                </div>
+                            </div>
                         </div>
+                        <div className="space-y-6">
+                            <h3 className="text-4xl font-bold text-[#221F3B] mb-4">About SCET IoT Club</h3>
+                            <p className="text-gray-600 text-lg leading-relaxed">
+                                The SCET IoT Club was formed in 2016 under Computer Engineering Department with guidance of expert faculties, IoT Club guide the students to build the new things and brings up with new ideas and solution everyday, It provides you a platform to build your technical skills, when it was started in 2016 the great immense response gotten from students by creating projects & exploring new hardware technologies and ideas getting to solve real life base problem.
+                            </p>
+                            <div className="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 border-2 border-orange-200">
+                                <h4 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                                    <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                    </svg>
+                                    Activities Done in IoT Club
+                                </h4>
+                                <ul className="space-y-2 text-gray-700">
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-600 mt-1">○</span>
+                                        <span>Various workshops are organised for students to make awareness to IOT, Practical experience with hardware, to share advance technologies related to other domain like robotics, drone, Computer vision.</span>
+                                    </li>
+                                    <li className="flex items-start gap-2">
+                                        <span className="text-orange-600 mt-1">○</span>
+                                        <span>Students Developed some projects on various domains viz.</span>
+                                    </li>
+                                    <li className="ml-6 space-y-1">
+                                        <div>• Gestures based car</div>
+                                        <div>• Gestures based home automation</div>
+                                        <div>• Classroom projector Automation</div>
+                                        <div>• AC Automation</div>
+                                        <div>• Object or human tracking drone</div>
+                                        <div>• Classroom light/fan automation</div>
+                                        <div>• Drone communication</div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* STATS SECTION */}
+            <section id="counts" className="py-16 px-6 bg-gradient-to-b from-[#1b1833] to-[#0f0c1d] text-white">
+                <div className="max-w-7xl mx-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+                        <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                            <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                                </svg>
+                            </div>
+                            <div className="text-4xl font-bold text-orange-400 mb-2">5</div>
+                            <p className="text-gray-300">Workshop</p>
+                        </div>
+                        <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                </svg>
+                            </div>
+                            <div className="text-4xl font-bold text-orange-400 mb-2">10</div>
+                            <p className="text-gray-300">Projects</p>
+                        </div>
+                        <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                </svg>
+                            </div>
+                            <div className="text-4xl font-bold text-orange-400 mb-2">25</div>
+                            <p className="text-gray-300">Students</p>
+                        </div>
+                        <div className="text-center bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                                </svg>
+                            </div>
+                            <div className="text-4xl font-bold text-orange-400 mb-2">9</div>
+                            <p className="text-gray-300">Events</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* SERVICES SECTION */}
+            <section id="services" className="py-24 px-6 bg-gradient-to-b from-white to-[#f7f7fb] text-gray-900">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl sm:text-5xl font-bold text-[#221F3B] mb-4">Services</h2>
+                        <p className="text-xl text-gray-600">Various Activities offered by SCET IoT Club</p>
+                    </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-transparent hover:border-orange-200">
+                            <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-amber-500 rounded-xl flex items-center justify-center mb-6">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                </svg>
+                            </div>
+                            <h4 className="text-xl font-bold mb-3 text-gray-900">Hands-On-Workshop</h4>
+                            <p className="text-gray-600 leading-relaxed">
+                                Various Hands-On-Workshop arranged for the students to give more knowledge related to IoT.
+                            </p>
+                        </div>
+                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-transparent hover:border-orange-200">
+                            <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+                                </svg>
+                            </div>
+                            <h4 className="text-xl font-bold mb-3 text-gray-900">Robotics</h4>
+                            <p className="text-gray-600 leading-relaxed">
+                                It is a branch of engineering that involves the conception, design, manufacture and operation of robots.
+                            </p>
+                        </div>
+                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-transparent hover:border-orange-200">
+                            <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mb-6">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                            </div>
+                            <h4 className="text-xl font-bold mb-3 text-gray-900">Drone</h4>
+                            <p className="text-gray-600 leading-relaxed">
+                                It is a flying robot that can be remotely controlled or fly autonomously using software-controlled flight plans in its embedded systems, that work in conjunction with onboard sensors and a global positioning system (GPS).
+                            </p>
+                        </div>
+                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-transparent hover:border-orange-200">
+                            <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mb-6">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                                </svg>
+                            </div>
+                            <h4 className="text-xl font-bold mb-3 text-gray-900">Cloud Computing/Artificial Intelligence</h4>
+                            <p className="text-gray-600 leading-relaxed">
+                                Providing the solutions to the students with the help of Cloud computing and also by using the artificial intelligence.
+                            </p>
+                        </div>
+                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-transparent hover:border-orange-200">
+                            <div className="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-xl flex items-center justify-center mb-6">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                </svg>
+                            </div>
+                            <h4 className="text-xl font-bold mb-3 text-gray-900">Computer Vision Projects</h4>
+                            <p className="text-gray-600 leading-relaxed">
+                                It deals with how computers extract meaningful information from images or videos.
+                            </p>
+                        </div>
+                        <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all border-2 border-transparent hover:border-orange-200">
+                            <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
+                                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                                </svg>
+                            </div>
+                            <h4 className="text-xl font-bold mb-3 text-gray-900">Practical Experience</h4>
+                            <p className="text-gray-600 leading-relaxed">
+                                To gain some more knowledge by doing small projects with practical projects & experience in leading the group.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* FACULTY COORDINATORS SECTION */}
+            <section id="doctors" className="py-24 px-6 bg-gradient-to-b from-[#1b1833] to-[#0f0c1d] text-white">
+                <div className="max-w-7xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl sm:text-5xl font-bold mb-4">Faculty Co-ordinators</h2>
+                        <p className="text-xl text-gray-300">In a Guidance under the best faculty and having a expertise in IoT</p>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 flex gap-6">
+                            <div className="flex-shrink-0">
+                                <img 
+                                    src="/teammembers/parizakamboj.jpg" 
+                                    alt="Prof.(Dr.) Pariza Kamboj"
+                                    className="w-32 h-32 rounded-xl object-cover border-2 border-orange-500/50"
+                                    onError={(e) => {
+                                        e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"%3E%3Crect width="128" height="128" fill="%23f3f4f6"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="12" fill="%236b7280"%3EPhoto%3C/text%3E%3C/svg%3E';
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <h4 className="text-2xl font-bold mb-2 text-orange-400">Prof.(Dr.) Pariza Kamboj</h4>
+                                <span className="text-gray-400 mb-3 block">Head Of Department</span>
+                                <p className="text-gray-300 text-sm leading-relaxed">
+                                    Qualification : Ph.D. (Comp. Engg.)<br/>
+                                    Designation : Professor<br/>
+                                    Email : pariza.kamboj@scet.ac.in
+                                </p>
+                            </div>
+                        </div>
+                        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-8 border border-white/10 flex gap-6">
+                            <div className="flex-shrink-0">
+                                <img 
+                                    src="/teammembers/vandanajoshi.jpg" 
+                                    alt="Prof. Vandana Joshi"
+                                    className="w-32 h-32 rounded-xl object-cover border-2 border-orange-500/50"
+                                    onError={(e) => {
+                                        e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128"%3E%3Crect width="128" height="128" fill="%23f3f4f6"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="12" fill="%236b7280"%3EPhoto%3C/text%3E%3C/svg%3E';
+                                    }}
+                                />
+                            </div>
+                            <div>
+                                <h4 className="text-2xl font-bold mb-2 text-orange-400">Prof. Vandana Joshi</h4>
+                                <span className="text-gray-400 mb-3 block">Assistant Professor</span>
+                                <p className="text-gray-300 text-sm leading-relaxed">
+                                    Qualification : M.Tech (Computer Science & Engg)<br/>
+                                    Designation : Assistant Professor<br/>
+                                    Email : vandana.joshi@scet.ac.in
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* FAQ SECTION */}
+            <section id="faq" className="py-24 px-6 bg-gradient-to-b from-[#f7f7fb] to-white text-gray-900">
+                <div className="max-w-4xl mx-auto">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl sm:text-5xl font-bold text-[#221F3B] mb-4">Frequently Asked Questions</h2>
+                        <p className="text-xl text-gray-600">
+                            To reaching out the most common questions asked by students, for that we have shortlisted some frequently asked questions mentioned below with answers.
+                        </p>
+                    </div>
+                    <div className="space-y-4">
+                        <details className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-200 hover:border-orange-300 transition-all">
+                            <summary className="font-bold text-lg text-gray-900 cursor-pointer flex items-center gap-3">
+                                <svg className="w-6 h-6 text-orange-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Why to join the SCET IoT Club ?
+                            </summary>
+                            <p className="mt-4 text-gray-600 leading-relaxed pl-9">
+                                The students can able to build the new things and brings up the solutions with new ideas in the daily life challenges.
+                            </p>
+                        </details>
+                        <details className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-200 hover:border-orange-300 transition-all">
+                            <summary className="font-bold text-lg text-gray-900 cursor-pointer flex items-center gap-3">
+                                <svg className="w-6 h-6 text-orange-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Which type of projects are there in IoT Club ?
+                            </summary>
+                            <p className="mt-4 text-gray-600 leading-relaxed pl-9">
+                                The students can able to learn the new hardware technologies by creating projects and try to solve the daily life solution.
+                            </p>
+                        </details>
+                        <details className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-200 hover:border-orange-300 transition-all">
+                            <summary className="font-bold text-lg text-gray-900 cursor-pointer flex items-center gap-3">
+                                <svg className="w-6 h-6 text-orange-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Which type of activities done in the IoT Club ?
+                            </summary>
+                            <p className="mt-4 text-gray-600 leading-relaxed pl-9">
+                                Various types of workshop will be arranged for the Student, Student can able to do practical experience with the hardware to share the advance technologies by doing the projects in different domains.
+                            </p>
+                        </details>
+                        <details className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-200 hover:border-orange-300 transition-all">
+                            <summary className="font-bold text-lg text-gray-900 cursor-pointer flex items-center gap-3">
+                                <svg className="w-6 h-6 text-orange-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Various workshops will be arranged for the students ?
+                            </summary>
+                            <p className="mt-4 text-gray-600 leading-relaxed pl-9">
+                                For the Students the workshop will arranged and the expert talks will also arranged for the students, so they can adapt new technologies and can solve their doubts.
+                            </p>
+                        </details>
+                        <details className="bg-white rounded-xl p-6 shadow-lg border-2 border-gray-200 hover:border-orange-300 transition-all">
+                            <summary className="font-bold text-lg text-gray-900 cursor-pointer flex items-center gap-3">
+                                <svg className="w-6 h-6 text-orange-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                Students can also raise their Queries ?
+                            </summary>
+                            <p className="mt-4 text-gray-600 leading-relaxed pl-9">
+                                Students can raise their queries by filling up the contact form in the website.
+                            </p>
+                        </details>
                     </div>
                 </div>
             </section>
@@ -488,75 +847,6 @@ function Home() {
                 </div>
             </section>
 
-            {/* FOOTER CTA */}
-            <section className="relative py-24 px-6 bg-gradient-to-b from-[#0f0c1d] via-[#1b1833] to-[#0f0c1d] text-white overflow-hidden">
-                {/* Background decorations */}
-                <div className="absolute inset-0 opacity-20">
-                    <div className="absolute top-0 left-1/4 w-96 h-96 bg-orange-500 rounded-full blur-3xl"></div>
-                    <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
-                </div>
-
-                <div className="relative z-10 max-w-4xl mx-auto text-center">
-                    <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-orange-500 to-amber-500 rounded-2xl mb-8 shadow-2xl">
-                        <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-
-                    <h3 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white">
-                        Ready to Get Started?
-                    </h3>
-                    <p className="text-gray-300 mb-12 text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed">
-                        Join our community of passionate developers. Stay active, learn consistently, and grow together with fellow innovators.
-                    </p>
-
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                        <button className="group px-10 py-4 bg-gradient-to-r from-orange-600 to-orange-700 rounded-xl hover:from-orange-700 hover:to-orange-800 transition-all shadow-2xl hover:shadow-orange-500/50 transform hover:-translate-y-1 font-semibold text-lg flex items-center gap-2">
-                            <span>Join Now</span>
-                            <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                            </svg>
-                        </button>
-                        
-                        <button className="px-10 py-4 bg-white/10 backdrop-blur-sm border-2 border-white/20 rounded-xl hover:bg-white/20 transition-all font-semibold text-lg">
-                            Learn More
-                        </button>
-                    </div>
-
-                    {/* Features grid */}
-                    <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                        <div className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                            <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                                <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
-                            </div>
-                            <h4 className="font-semibold mb-2">Expert Workshops</h4>
-                            <p className="text-gray-400 text-sm">Learn from industry professionals</p>
-                        </div>
-
-                        <div className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                            <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                                <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                </svg>
-                            </div>
-                            <h4 className="font-semibold mb-2">Active Community</h4>
-                            <p className="text-gray-400 text-sm">Connect with like-minded developers</p>
-                        </div>
-
-                        <div className="p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all">
-                            <div className="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                                <svg className="w-6 h-6 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                                </svg>
-                            </div>
-                            <h4 className="font-semibold mb-2">Certifications</h4>
-                            <p className="text-gray-400 text-sm">Get recognized for your achievements</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
             {/* ENROLLMENT MODAL */}
             {showModal && selectedEvent && (
@@ -844,6 +1134,44 @@ function Home() {
                                     Cancel
                                 </button>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Video Modal - Full Screen Style */}
+            {showVideoModal && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4 sm:p-8"
+                    onClick={() => setShowVideoModal(false)}
+                >
+                    <div 
+                        className="relative bg-black rounded-2xl shadow-2xl w-full max-w-[95vw] h-[90vh] max-h-[90vh] overflow-hidden flex flex-col"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Close Button */}
+                        <button
+                            onClick={() => setShowVideoModal(false)}
+                            className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center text-white text-xl font-semibold transition-all shadow-lg"
+                        >
+                            ✕
+                        </button>
+
+                        {/* Video Container - Takes full available space */}
+                        <div className="relative flex-1 flex items-center justify-center overflow-hidden">
+                            <video
+                                controls
+                                autoPlay
+                                className="max-w-full max-h-full w-auto h-auto object-contain"
+                                src="/videos/VJ_CO_IOT_Club_v1.1.mp4"
+                            >
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
+                        {/* Video Title */}
+                        <div className="p-4 bg-black/80 border-t border-white/10">
+                            <h3 className="text-xl font-bold text-white text-center">IOT Club Introduction Video</h3>
                         </div>
                     </div>
                 </div>

@@ -37,15 +37,22 @@ function Signup({onSwitchToLogin }) {
     setLoading(true);
 
     try {
-      await signUp(formData.email, formData.password, {
+      const result = await signUp(formData.email, formData.password, {
         name: formData.name,
         enrollment: formData.enrollment,
         branch: formData.branch,
         year: formData.year,
       });
-      // Show success message - email verification might be required
-      alert('Account created! Please check your email to verify your account.');
-      onSwitchToLogin?.();
+      
+      // Show success message
+      if (result.user && !result.session) {
+        // Email confirmation required
+        alert('Account created! Please check your email to verify your account. You will be redirected after verification.');
+      } else if (result.session) {
+        // Auto-confirmed (if email confirmation is disabled)
+        alert('Account created successfully!');
+        onSwitchToLogin?.();
+      }
     } catch (err) {
       setError(err.message || 'Failed to create account');
     } finally {

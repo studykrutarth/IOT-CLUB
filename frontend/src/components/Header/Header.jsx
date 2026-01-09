@@ -11,6 +11,14 @@ export default function Header() {
   const [showUserMenu, setShowUserMenu] = useState(false);
 
   const navItems = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Events', path: '/events' },
+    { name: 'Projects', path: '/projects' },
+    { name: 'Team', path: '/team' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Reports', path: '/reports' },
+    { name: 'Contact', path: '/contact' },
   ]
   
   const navLinkClass = ({ isActive }) =>
@@ -119,16 +127,7 @@ export default function Header() {
                     </div>
                   ) : (
                     <>
-                      <button
-                        onClick={() => {
-                          setAuthMode('login');
-                          setShowAuthModal(true);
-                          closeMenu();
-                        }}
-                        className="w-full lg:w-auto px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg font-medium transition-all border border-white/20"
-                      >
-                        Sign In
-                      </button>
+
                       <button
                         onClick={() => {
                           setAuthMode('signup');
@@ -137,7 +136,7 @@ export default function Header() {
                         }}
                         className="w-full lg:w-auto px-6 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg font-medium transition-all shadow-lg"
                       >
-                        Sign Up
+                          Get Started
                       </button>
                     </>
                   )}

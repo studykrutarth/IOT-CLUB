@@ -1,4 +1,10 @@
 export { default as Header } from './Header/Header';
 export { default as Home } from './Home/Home';
-
-export { default as NotFound } from './Error/NotFound'
+export { default as Events } from './Events/Events';
+export { default as AboutUs } from './AboutUs/AboutUs';
+export { default as Projects } from './Projects/Projects';
+export { default as TeamMembers } from './TeamMembers/TeamMembers';
+export { default as Reports } from './Reports/Reports';
+export { default as Gallery } from './Gallery/Gallery';
+export { default as Contact } from './Contact/Contact';
+export { default as NotFound } from './Error/NotFound';
